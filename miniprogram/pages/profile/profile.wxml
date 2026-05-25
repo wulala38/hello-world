@@ -1,0 +1,105 @@
+<view class="container">
+  <view class="profile-header">
+    <view class="user-info-card">
+      <view class="avatar-section">
+        <image class="avatar" src="{{userInfo.avatar}}" mode="aspectFill" bindtap="getUserInfo"></image>
+        <view class="avatar-edit">
+          <text class="edit-icon">✏️</text>
+        </view>
+      </view>
+      <view class="user-details">
+        <text class="nickname">{{userInfo.nickname}}</text>
+        <text class="user-level">探险等级：{{statistics.completedLevels > 0 ? '初级探险家' : '新手'}}</text>
+      </view>
+    </view>
+
+    <view class="quick-stats">
+      <view class="stat-card" bindtap="viewLevelProgress">
+        <text class="stat-value">{{statistics.completedLevels}}</text>
+        <text class="stat-label">完成关卡</text>
+      </view>
+      <view class="stat-card" bindtap="viewAchievement">
+        <text class="stat-value">{{unlockedAchievements.length}}</text>
+        <text class="stat-label">获得徽章</text>
+      </view>
+      <view class="stat-card">
+        <text class="stat-value">{{statistics.totalScore}}</text>
+        <text class="stat-label">累计积分</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="achievement-section">
+    <view class="section-header">
+      <text class="section-title">🏆 我的成就</text>
+      <text class="section-more" bindtap="viewAchievement">查看全部 →</text>
+    </view>
+    <view class="achievement-list">
+      <view class="achievement-item {{item.id === unlocked ? 'unlocked' : ''}}"
+            wx:for="{{achievements}}"
+            wx:key="id"
+            wx:for-item="item">
+        <view class="achievement-icon {{unlockedAchievements.length > index ? 'active' : ''}}">
+          {{item.icon}}
+        </view>
+        <text class="achievement-name">{{item.name}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="statistics-section">
+    <view class="section-header">
+      <text class="section-title">📊 学习统计</text>
+    </view>
+    <view class="stats-grid">
+      <view class="stat-grid-item">
+        <text class="grid-icon">📝</text>
+        <text class="grid-value">{{statistics.quizCorrect}}</text>
+        <text class="grid-label">答对题数</text>
+      </view>
+      <view class="stat-grid-item">
+        <text class="grid-icon">📚</text>
+        <text class="grid-value">{{statistics.favoriteCount}}</text>
+        <text class="grid-label">收藏知识</text>
+      </view>
+      <view class="stat-grid-item">
+        <text class="grid-icon">⏱</text>
+        <text class="grid-value">{{statistics.studyTime}}</text>
+        <text class="grid-label">学习时长(分钟)</text>
+      </view>
+      <view class="stat-grid-item">
+        <text class="grid-icon">🎯</text>
+        <text class="grid-value">{{statistics.completedLevels > 0 ? Math.round(statistics.quizCorrect / statistics.completedLevels * 100 / 2) : 0}}%</text>
+        <text class="grid-label">正确率</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="menu-section">
+    <view class="menu-list">
+      <view class="menu-item"
+            wx:for="{{menuItems}}"
+            wx:key="id"
+            bindtap="navigateToMenu"
+            data-item="{{item}}">
+        <view class="menu-left">
+          <text class="menu-icon">{{item.icon}}</text>
+          <text class="menu-title">{{item.title}}</text>
+        </view>
+        <text class="menu-arrow">→</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="settings-section">
+    <view class="setting-item" bindtap="clearData">
+      <text class="setting-icon">🗑</text>
+      <text class="setting-title">清除本地数据</text>
+    </view>
+  </view>
+
+  <view class="footer-section">
+    <text class="footer-text">古物理趣 v1.0.0</text>
+    <text class="footer-desc">让科学更有趣</text>
+  </view>
+</view>

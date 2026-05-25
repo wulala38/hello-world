@@ -1,0 +1,132 @@
+<view class="container">
+  <view class="header-section" style="background: linear-gradient(135deg, {{level.color || '#8B4513'} 0%, {{level.colorLight || '#A0522D'} 100%);">
+    <view class="level-header-content">
+      <view class="level-info">
+        <text class="level-icon">{{level.icon}}</text>
+        <text class="level-title">{{level.title}}</text>
+        <text class="level-scene">📍 {{level.scene}}</text>
+      </view>
+      <view class="connection-status-bar">
+        <view class="status-indicator {{isConnected ? 'status-connected' : 'status-disconnected'}}"></view>
+        <text class="status-text">{{isConnected ? '设备已连接' : '设备未连接'}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="main-content">
+    <view class="scene-section">
+      <view class="scene-card">
+        <view class="scene-image-placeholder">
+          <text class="scene-icon-large">{{level.icon}}</text>
+          <text class="scene-label">场景示意</text>
+        </view>
+        <view class="scene-info">
+          <text class="scene-title">背景介绍</text>
+          <text class="scene-text">{{level.background}}</text>
+        </view>
+        <view class="ancient-example">
+          <text class="example-label">📜 典故：{{level.ancientExample}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="objective-section">
+      <view class="section-header">
+        <text class="section-title">🎯 通关目标</text>
+      </view>
+      <view class="objective-card">
+        <view class="objective-item" wx:for="{{objectives}}" wx:key="index">
+          <view class="objective-icon {{item.completed ? 'completed' : ''}}">
+            {{item.completed ? '✓' : index + 1}}
+          </view>
+          <text class="objective-text {{item.completed ? 'completed' : ''}}">{{item.text}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="knowledge-section">
+      <view class="section-header">
+        <text class="section-title">📖 相关知识</text>
+        <text class="section-more" bindtap="viewKnowledge">查看详情 →</text>
+      </view>
+      <view class="knowledge-preview">
+        <view class="knowledge-card" wx:for="{{level.knowledge}}" wx:key="index" wx:if="{{index < 2}}">
+          <text class="knowledge-title">{{item.title}}</text>
+          <text class="knowledge-content">{{item.content}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="hint-section">
+      <view class="section-header">
+        <text class="section-title">💡 智能提示</text>
+        <view class="hint-timer">
+          <text class="timer-text">{{hintCountdown}}s</text>
+        </view>
+      </view>
+      <view class="hint-card">
+        <view class="hint-status">
+          <view class="hint-progress">
+            <view class="hint-progress-bar">
+              <view class="hint-progress-fill" style="width: {{hintProgress}}%"></view>
+            </view>
+            <view class="hint-stages">
+              <text class="stage-text {{hintStage >= 1 ? 'active' : ''}}">30s 原理提示</text>
+              <text class="stage-text {{hintStage >= 2 ? 'active' : ''}}">60s 分步指引</text>
+            </view>
+          </view>
+          <button class="btn-hint {{showHint ? 'active' : ''}}" bindtap="triggerHint">
+            {{showHint ? '查看提示' : '手动触发'}}
+          </button>
+        </view>
+        
+        <view class="hint-content" wx:if="{{showHint && currentHint}}">
+          <view class="hint-type">{{currentHint.type === 'principle' ? '💡 原理提示' : '📝 分步指引'}}</view>
+          <text class="hint-text">{{currentHint.content}}</text>
+          <view class="hint-actions" wx:if="{{currentHint.type === 'step'}}">
+            <view class="step-item" wx:for="{{currentHint.steps}}" wx:key="index">
+              <text class="step-number">{{index + 1}}</text>
+              <text class="step-text">{{item}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="action-section">
+      <button class="btn-primary btn-large {{!isConnected ? 'disabled' : ''}}" 
+              bindtap="startLevel"
+              disabled="{{!isConnected}}">
+        {{isConnected ? '开始挑战' : '请先连接设备'}}
+      </button>
+      
+      <view class="action-tips">
+        <text class="tip-text">💡 提示：挑战过程中会自动计时，30秒后提供原理提示，60秒后提供分步指引</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="modal-mask" wx:if="{{showModal}}" bindtap="closeModal">
+    <view class="modal-content" catchtap="preventBubble">
+      <view class="modal-header">
+        <text class="modal-title">恭喜完成关卡！</text>
+        <text class="modal-score">获得 {{earnedScore}} 积分</text>
+      </view>
+      <view class="modal-body">
+        <view class="achievement-badge" wx:if="{{newAchievement}}">
+          <text class="badge-icon">🏆</text>
+          <text class="badge-name">{{newAchievement}}</text>
+          <text class="badge-label">新成就解锁！</text>
+        </view>
+        <view class="quiz-prompt">
+          <text class="prompt-text">是否继续答题？</text>
+          <text class="prompt-desc">答对可获得更多积分和知识卡片</text>
+        </view>
+      </view>
+      <view class="modal-actions">
+        <button class="btn-secondary" bindtap="goToQuiz">开始答题</button>
+        <button class="btn-primary" bindtap="shareResult">分享成果</button>
+      </view>
+    </view>
+  </view>
+</view>

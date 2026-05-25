@@ -1,0 +1,276 @@
+.profile-header {
+  background: linear-gradient(135deg, #8B4513 0%, #A0522D 100%);
+  padding: 48rpx 32rpx 0;
+  color: white;
+}
+
+.user-info-card {
+  display: flex;
+  align-items: center;
+  margin-bottom: 32rpx;
+}
+
+.avatar-section {
+  position: relative;
+  margin-right: 24rpx;
+}
+
+.avatar {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  border: 4rpx solid rgba(255, 255, 255, 0.3);
+}
+
+.avatar-edit {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 40rpx;
+  height: 40rpx;
+  background-color: #DAA520;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.edit-icon {
+  font-size: 20rpx;
+}
+
+.user-details {
+  flex: 1;
+}
+
+.nickname {
+  font-size: 36rpx;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 8rpx;
+}
+
+.user-level {
+  font-size: 24rpx;
+  opacity: 0.9;
+}
+
+.quick-stats {
+  display: flex;
+  background-color: rgba(255, 255, 255, 0.15);
+  border-radius: 20rpx 20rpx 0 0;
+}
+
+.stat-card {
+  flex: 1;
+  text-align: center;
+  padding: 24rpx 0;
+  border-right: 2rpx solid rgba(255, 255, 255, 0.2);
+}
+
+.stat-card:last-child {
+  border-right: none;
+}
+
+.stat-value {
+  font-size: 48rpx;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 8rpx;
+}
+
+.stat-label {
+  font-size: 22rpx;
+  opacity: 0.9;
+}
+
+.achievement-section,
+.statistics-section,
+.menu-section {
+  padding: 32rpx 24rpx;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.section-title {
+  font-size: 36rpx;
+  color: #8B4513;
+  font-weight: bold;
+}
+
+.section-more {
+  font-size: 26rpx;
+  color: #DAA520;
+}
+
+.achievement-list {
+  display: flex;
+  overflow-x: auto;
+  gap: 20rpx;
+  padding: 8rpx 0;
+}
+
+.achievement-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 120rpx;
+}
+
+.achievement-icon {
+  width: 80rpx;
+  height: 80rpx;
+  background-color: #F5DEB3;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40rpx;
+  margin-bottom: 8rpx;
+  opacity: 0.4;
+}
+
+.achievement-icon.active {
+  background-color: #DAA520;
+  opacity: 1;
+  box-shadow: 0 4rpx 12rpx rgba(218, 165, 32, 0.3);
+}
+
+.achievement-name {
+  font-size: 22rpx;
+  color: #8B4513;
+  text-align: center;
+}
+
+.statistics-section {
+  background-color: #FFF8DC;
+  margin: 0 -24rpx;
+  padding: 32rpx 24rpx;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20rpx;
+}
+
+.stat-grid-item {
+  background-color: white;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  text-align: center;
+  box-shadow: 0 4rpx 12rpx rgba(139, 69, 19, 0.08);
+}
+
+.grid-icon {
+  font-size: 40rpx;
+  display: block;
+  margin-bottom: 12rpx;
+}
+
+.grid-value {
+  font-size: 36rpx;
+  color: #DAA520;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 8rpx;
+}
+
+.grid-label {
+  font-size: 22rpx;
+  color: #8B4513;
+}
+
+.menu-section {
+  padding-bottom: 0;
+}
+
+.menu-list {
+  background-color: white;
+  border-radius: 16rpx;
+  overflow: hidden;
+  box-shadow: 0 4rpx 12rpx rgba(139, 69, 19, 0.08);
+}
+
+.menu-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 32rpx;
+  border-bottom: 2rpx solid #F5DEB3;
+  transition: background-color 0.2s ease;
+}
+
+.menu-item:last-child {
+  border-bottom: none;
+}
+
+.menu-item:active {
+  background-color: #FFF8DC;
+}
+
+.menu-left {
+  display: flex;
+  align-items: center;
+}
+
+.menu-icon {
+  font-size: 36rpx;
+  margin-right: 16rpx;
+}
+
+.menu-title {
+  font-size: 30rpx;
+  color: #2F1810;
+}
+
+.menu-arrow {
+  font-size: 32rpx;
+  color: #DAA520;
+}
+
+.settings-section {
+  padding: 24rpx;
+}
+
+.setting-item {
+  display: flex;
+  align-items: center;
+  padding: 24rpx;
+  background-color: white;
+  border-radius: 12rpx;
+  box-shadow: 0 4rpx 12rpx rgba(139, 69, 19, 0.08);
+}
+
+.setting-icon {
+  font-size: 36rpx;
+  margin-right: 16rpx;
+}
+
+.setting-title {
+  font-size: 28rpx;
+  color: #ff4d4f;
+}
+
+.footer-section {
+  padding: 48rpx 24rpx;
+  text-align: center;
+}
+
+.footer-text {
+  font-size: 24rpx;
+  color: #8B4513;
+  display: block;
+  margin-bottom: 8rpx;
+}
+
+.footer-desc {
+  font-size: 22rpx;
+  color: #8B4513;
+  opacity: 0.6;
+}

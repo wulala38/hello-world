@@ -1,0 +1,66 @@
+<view class="container">
+  <view class="header-section">
+    <view class="search-bar">
+      <text class="search-icon">🔍</text>
+      <input class="search-input" 
+             placeholder="搜索知识内容" 
+             bindinput="onSearch"
+             value="{{searchKeyword}}"/>
+    </view>
+  </view>
+
+  <view class="category-section">
+    <scroll-view scroll-x class="category-scroll">
+      <view class="category-list">
+        <view class="category-item {{selectedCategory === item ? 'active' : ''}}"
+              wx:for="{{categories}}"
+              wx:key="item"
+              bindtap="selectCategory"
+              data-category="{{item}}">
+          <text class="category-text">{{item}}</text>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <view class="knowledge-list">
+    <view class="knowledge-card {{item.favorite ? 'favorite' : ''}}"
+          wx:for="{{filteredKnowledge}}"
+          wx:key="id"
+          bindtap="viewDetail"
+          data-item="{{item}}">
+      <view class="card-header">
+        <view class="level-badge">
+          <text class="level-icon">{{item.levelIcon}}</text>
+          <text class="level-title">{{item.levelTitle}}</text>
+        </view>
+        <view class="card-actions">
+          <text class="favorite-btn {{isFavorite(item) ? 'active' : ''}}"
+                bindtap="toggleFavorite"
+                data-item="{{item}}">
+            {{isFavorite(item) ? '❤️' : '🤍'}}
+          </text>
+        </view>
+      </view>
+      
+      <view class="card-content">
+        <text class="knowledge-title">{{item.title}}</text>
+        <text class="knowledge-preview">{{item.content}}</text>
+      </view>
+
+      <view class="card-footer">
+        <text class="read-more">查看详情 →</text>
+      </view>
+
+      <view class="ancient-decoration">
+        <text class="pattern">☯</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="empty-state" wx:if="{{filteredKnowledge.length === 0}}">
+    <text class="empty-icon">📚</text>
+    <text class="empty-text">暂无相关知识</text>
+    <text class="empty-hint">试试其他关键词或分类</text>
+  </view>
+</view>

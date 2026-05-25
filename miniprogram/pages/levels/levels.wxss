@@ -1,0 +1,270 @@
+.header-section {
+  background: linear-gradient(135deg, #8B4513 0%, #A0522D 100%);
+  padding: 48rpx 32rpx 64rpx;
+  color: white;
+}
+
+.header-content {
+  text-align: center;
+  margin-bottom: 32rpx;
+}
+
+.header-title {
+  font-size: 44rpx;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 12rpx;
+}
+
+.header-subtitle {
+  font-size: 26rpx;
+  opacity: 0.9;
+}
+
+.progress-overview {
+  display: flex;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.15);
+  border-radius: 16rpx;
+  padding: 24rpx;
+}
+
+.progress-circle {
+  width: 100rpx;
+  height: 100rpx;
+  background-color: #DAA520;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-right: 24rpx;
+}
+
+.progress-value {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: white;
+}
+
+.progress-label {
+  font-size: 18rpx;
+  color: white;
+}
+
+.progress-info {
+  flex: 1;
+}
+
+.progress-text {
+  font-size: 26rpx;
+  color: white;
+  display: block;
+  margin-bottom: 12rpx;
+}
+
+.progress-bar-mini {
+  height: 12rpx;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 6rpx;
+  overflow: hidden;
+}
+
+.levels-grid {
+  padding: 32rpx 24rpx;
+  margin-top: -32rpx;
+}
+
+.level-card {
+  background-color: white;
+  border-radius: 20rpx;
+  padding: 32rpx;
+  margin-bottom: 24rpx;
+  box-shadow: 0 8rpx 24rpx rgba(139, 69, 19, 0.1);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.level-card:active {
+  transform: scale(0.98);
+}
+
+.level-card.completed {
+  border-left: 6rpx solid #52c41a;
+}
+
+.level-icon-wrapper {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 20rpx;
+}
+
+.level-icon {
+  font-size: 80rpx;
+  display: block;
+}
+
+.level-number {
+  position: absolute;
+  top: -10rpx;
+  left: -10rpx;
+  width: 40rpx;
+  height: 40rpx;
+  background-color: #DAA520;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22rpx;
+  font-weight: bold;
+}
+
+.level-badge {
+  position: absolute;
+  top: -10rpx;
+  right: -10rpx;
+  width: 40rpx;
+  height: 40rpx;
+  background-color: #52c41a;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24rpx;
+  font-weight: bold;
+}
+
+.level-content {
+  flex: 1;
+}
+
+.level-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12rpx;
+}
+
+.level-title {
+  font-size: 36rpx;
+  color: #2F1810;
+  font-weight: bold;
+}
+
+.difficulty-tag {
+  padding: 6rpx 16rpx;
+  border-radius: 20rpx;
+  font-size: 22rpx;
+  color: white;
+  font-weight: bold;
+}
+
+.level-description {
+  font-size: 26rpx;
+  color: #8B4513;
+  display: block;
+  margin-bottom: 16rpx;
+}
+
+.level-meta {
+  display: flex;
+  gap: 24rpx;
+  margin-bottom: 12rpx;
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+}
+
+.meta-icon {
+  font-size: 24rpx;
+  margin-right: 6rpx;
+}
+
+.meta-text {
+  font-size: 24rpx;
+  color: #5D4037;
+}
+
+.level-scene {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16rpx;
+}
+
+.scene-icon {
+  font-size: 24rpx;
+  margin-right: 8rpx;
+}
+
+.scene-text {
+  font-size: 24rpx;
+  color: #8B4513;
+}
+
+.level-action {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-top: 16rpx;
+  border-top: 2rpx solid #F5DEB3;
+}
+
+.action-text {
+  font-size: 28rpx;
+  color: #DAA520;
+  font-weight: bold;
+}
+
+.action-arrow {
+  font-size: 32rpx;
+  color: #DAA520;
+  margin-left: 8rpx;
+}
+
+.ancient-decoration {
+  position: absolute;
+  top: 16rpx;
+  right: 16rpx;
+  opacity: 0.1;
+}
+
+.pattern {
+  font-size: 80rpx;
+  color: #8B4513;
+}
+
+.tips-card {
+  background-color: white;
+  border-radius: 16rpx;
+  padding: 32rpx;
+  margin: 0 24rpx 32rpx;
+  box-shadow: 0 4rpx 12rpx rgba(139, 69, 19, 0.08);
+}
+
+.tips-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16rpx;
+}
+
+.tips-icon {
+  font-size: 32rpx;
+  margin-right: 12rpx;
+}
+
+.tips-title {
+  font-size: 30rpx;
+  color: #8B4513;
+  font-weight: bold;
+}
+
+.tips-text {
+  font-size: 26rpx;
+  color: #5D4037;
+  line-height: 1.6;
+}
