@@ -1,0 +1,140 @@
+<view class="container">
+  <view class="header">
+    <view class="header-content">
+      <view class="logo-section">
+        <image class="logo" src="/images/logo.png" mode="aspectFit"></image>
+        <view class="title-group">
+          <text class="main-title">古物理趣</text>
+          <text class="subtitle">古代物理密室科普助手</text>
+        </view>
+      </view>
+      <view class="connection-status" bindtap="navigateToBluetooth">
+        <view class="status-indicator {{isConnected ? 'status-connected' : 'status-disconnected'}}"></view>
+        <text class="status-text">{{isConnected ? '已连接' : '未连接'}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="main-content">
+    <view class="banner-section">
+      <view class="banner-card">
+        <view class="banner-text">
+          <text class="banner-title">探索古代智慧的奥秘</text>
+          <text class="banner-desc">在互动密室中体验古代物理的神奇</text>
+        </view>
+        <view class="banner-decoration">
+          <text class="ancient-symbol">☯</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="action-section">
+      <view class="action-card primary" bindtap="startExperience">
+        <view class="action-icon">⚙</view>
+        <view class="action-text">
+          <text class="action-title">开始体验</text>
+          <text class="action-desc">连接密室机关开始冒险</text>
+        </view>
+        <text class="action-arrow">→</text>
+      </view>
+
+      <view class="action-card secondary" bindtap="scanQRCode">
+        <view class="action-icon">📷</view>
+        <view class="action-text">
+          <text class="action-title">扫码绑定</text>
+          <text class="action-desc">扫描密室二维码绑定关卡</text>
+        </view>
+        <text class="action-arrow">→</text>
+      </view>
+
+      <view class="action-card tertiary" bindtap="navigateToKnowledge">
+        <view class="action-icon">📚</view>
+        <view class="action-text">
+          <text class="action-title">科普学习</text>
+          <text class="action-desc">深入了解古代物理原理</text>
+        </view>
+        <text class="action-arrow">→</text>
+      </view>
+    </view>
+
+    <view class="intro-section">
+      <view class="section-header">
+        <text class="section-title">项目介绍</text>
+        <view class="section-line"></view>
+      </view>
+      <view class="intro-card">
+        <text class="intro-text">
+          "古物理趣"是一款专为古代物理密室设计的互动科普小程序。通过结合真实密室场景与趣味物理知识，让玩家在解谜闯关的过程中，深入了解中国古代物理学的伟大成就。
+        </text>
+        <view class="feature-list">
+          <view class="feature-item">
+            <text class="feature-icon">🏛</text>
+            <text class="feature-text">六大主题关卡</text>
+          </view>
+          <view class="feature-item">
+            <text class="feature-icon">💡</text>
+            <text class="feature-text">智能提示系统</text>
+          </view>
+          <view class="feature-item">
+            <text class="feature-icon">📖</text>
+            <text class="feature-text">古代物理知识库</text>
+          </view>
+          <view class="feature-item">
+            <text class="feature-icon">🏆</text>
+            <text class="feature-text">成就徽章收集</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="stats-section">
+      <view class="section-header">
+        <text class="section-title">我的进度</text>
+        <view class="section-line"></view>
+      </view>
+      <view class="stats-card">
+        <view class="stat-item">
+          <view class="stat-value">{{completedLevels}}</view>
+          <view class="stat-label">已完成关卡</view>
+        </view>
+        <view class="stat-divider"></view>
+        <view class="stat-item">
+          <view class="stat-value">{{achievementCount}}</view>
+          <view class="stat-label">获得徽章</view>
+        </view>
+        <view class="stat-divider"></view>
+        <view class="stat-item">
+          <view class="stat-value">{{totalScore}}</view>
+          <view class="stat-label">累计积分</view>
+        </view>
+      </view>
+      <view class="progress-section">
+        <view class="progress-label">
+          <text>总进度</text>
+          <text class="progress-percent">{{progressPercent}}%</text>
+        </view>
+        <view class="progress-bar">
+          <view class="progress-fill" style="width: {{progressPercent}}%"></view>
+        </view>
+      </view>
+    </view>
+
+    <view class="tips-section">
+      <view class="section-header">
+        <text class="section-title">小贴士</text>
+        <view class="section-line"></view>
+      </view>
+      <view class="tip-card">
+        <text class="tip-icon">💬</text>
+        <view class="tip-content">
+          <text class="tip-title">温馨提示</text>
+          <text class="tip-text">游戏中遇到困难不要着急，30秒后会提供原理提示，60秒后会有详细指引。你也可以随时手动触发帮助。</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="footer">
+    <text class="footer-text">© 2024 古物理趣 · 让科学更有趣</text>
+  </view>
+</view>

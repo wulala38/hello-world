@@ -1,0 +1,80 @@
+<view class="container">
+  <view class="header-section">
+    <view class="header-content">
+      <text class="header-title">选择关卡</text>
+      <text class="header-subtitle">探索六大古代物理主题</text>
+    </view>
+    <view class="progress-overview">
+      <view class="progress-circle">
+        <text class="progress-value">{{completedCount}}</text>
+        <text class="progress-label">已完成</text>
+      </view>
+      <view class="progress-info">
+        <text class="progress-text">总进度 {{progressPercent}}%</text>
+        <view class="progress-bar-mini">
+          <view class="progress-fill" style="width: {{progressPercent}}%"></view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="levels-grid">
+    <view class="level-card {{item.completed ? 'completed' : ''}}"
+          wx:for="{{levels}}"
+          wx:key="id"
+          bindtap="goToLevel"
+          data-level="{{item}}">
+      <view class="level-icon-wrapper">
+        <text class="level-icon">{{item.icon}}</text>
+        <view class="level-number">{{index + 1}}</view>
+        <view class="level-badge" wx:if="{{item.completed}}">✓</view>
+      </view>
+      
+      <view class="level-content">
+        <view class="level-header">
+          <text class="level-title">{{item.title}}</text>
+          <view class="difficulty-tag" style="background-color: {{getDifficultyColor(item.difficulty)}}">
+            {{item.difficulty}}
+          </view>
+        </view>
+        
+        <text class="level-description">{{item.description}}</text>
+        
+        <view class="level-meta">
+          <view class="meta-item">
+            <text class="meta-icon">⏱</text>
+            <text class="meta-text">{{item.duration}}</text>
+          </view>
+          <view class="meta-item" wx:if="{{item.score > 0}}">
+            <text class="meta-icon">⭐</text>
+            <text class="meta-text">{{item.score}}分</text>
+          </view>
+        </view>
+
+        <view class="level-scene">
+          <text class="scene-icon">📍</text>
+          <text class="scene-text">{{item.scene}}</text>
+        </view>
+
+        <view class="level-action">
+          <text class="action-text">{{item.completed ? '再次挑战' : '开始挑战'}}</text>
+          <text class="action-arrow">→</text>
+        </view>
+      </view>
+
+      <view class="ancient-decoration">
+        <text class="pattern">☯</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="tips-card">
+    <view class="tips-header">
+      <text class="tips-icon">💡</text>
+      <text class="tips-title">游戏提示</text>
+    </view>
+    <text class="tips-text">
+      每个关卡都包含古代物理原理的学习和互动答题。完成后可获得积分和徽章，还能解锁知识卡片。
+    </text>
+  </view>
+</view>

@@ -1,463 +1,270 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>随机密码生成器</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://unpkg.com/lucide@latest"></script>
-  <style>
-    .icon {
-      display: inline-block;
-      width: 1em;
-      height: 1em;
-      stroke-width: 2;
-      stroke: currentColor;
-      fill: none;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>古物理趣 - 项目下载</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #FFF8DC 0%, #F5DEB3 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(139, 69, 19, 0.2);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #8B4513 0%, #A0522D 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        .content {
+            padding: 40px;
+        }
+        .success-banner {
+            background: linear-gradient(135deg, #52c41a 0%, #73d13d 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .success-banner h2 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+        .section {
+            margin-bottom: 30px;
+        }
+        .section h2 {
+            color: #8B4513;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+        }
+        .section h2::before {
+            content: '📋';
+            margin-right: 10px;
+        }
+        .download-card {
+            background: #FFF8DC;
+            border: 3px solid #DAA520;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background: linear-gradient(135deg, #DAA520 0%, #FFD700 100%);
+            color: white;
+            border: none;
+            padding: 20px 50px;
+            font-size: 1.4rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-bottom: 15px;
+            text-decoration: none;
+        }
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(218, 165, 32, 0.4);
+        }
+        .file-info {
+            color: #8B4513;
+            font-size: 0.95rem;
+        }
+        .steps {
+            list-style: none;
+        }
+        .steps li {
+            padding: 15px;
+            background: #FFF8DC;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+        .step-number {
+            width: 30px;
+            height: 30px;
+            background: #DAA520;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        .feature {
+            background: #FFF8DC;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        .feature-text {
+            color: #8B4513;
+            font-weight: bold;
+        }
+        .footer {
+            background: #FFF8DC;
+            padding: 20px;
+            text-align: center;
+            color: #8B4513;
+        }
+        .note {
+            background: #FFF3CD;
+            border: 1px solid #FFC107;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        .note h3 {
+            color: #856404;
+            margin-bottom: 10px;
+        }
+        .note p {
+            color: #856404;
+        }
+    </style>
 </head>
-<body class="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 py-12 px-4">
-  <div class="max-w-2xl mx-auto">
-    <div class="text-center mb-10">
-      <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl mb-4 shadow-lg shadow-blue-500/30">
-        <i data-lucide="lock" class="w-8 h-8 text-white"></i>
-      </div>
-      <h1 class="text-4xl font-bold text-white mb-2">随机密码生成器</h1>
-      <p class="text-slate-400 text-lg">生成安全、高强度的随机密码</p>
-    </div>
-
-    <div class="bg-slate-800 rounded-2xl shadow-2xl overflow-hidden border border-slate-700">
-      <div class="p-6 border-b border-slate-700 bg-slate-800/50">
-        <div class="flex items-center gap-3 mb-3">
-          <span class="text-sm font-medium text-slate-400">密码强度</span>
-          <div class="flex gap-1">
-            <div id="strengthBar" class="w-full h-2 rounded-full transition-all bg-gray-300" style="width: 100px;"></div>
-          </div>
-          <span id="strengthLabel" class="text-sm font-semibold text-white">无</span>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏛️ 古物理趣</h1>
+            <p>古代物理密室科普助手 - 微信小程序</p>
         </div>
         
-        <div class="flex items-center gap-4 bg-slate-900 rounded-xl p-4 mb-4">
-          <div class="flex-1">
-            <input id="passwordDisplay" type="text" readonly class="w-full bg-transparent border-none outline-none text-2xl font-mono text-white placeholder-slate-600" placeholder="点击生成密码" />
-          </div>
-          <button id="copyBtn" class="p-3 rounded-xl hover:bg-slate-700 transition-colors group relative">
-            <i data-lucide="copy" class="w-6 h-6 text-slate-400 group-hover:text-white"></i>
-          </button>
-          <button id="generateBtn" class="p-3 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-xl hover:from-blue-500 hover:to-indigo-500 transition-all shadow-lg shadow-blue-500/25">
-            <i data-lucide="refresh-cw" class="w-6 h-6 text-white"></i>
-          </button>
-        </div>
-
-        <div class="flex items-center gap-3">
-          <i data-lucide="globe" class="w-5 h-5 text-slate-400"></i>
-          <input id="websiteInput" type="text" placeholder="输入网站/服务名称（可选）" class="flex-1 bg-slate-700 border border-slate-600 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
-          <button id="saveBtn" class="flex items-center gap-2 px-4 py-3 bg-gradient-to-r from-green-600 to-emerald-600 text-white rounded-xl hover:from-green-500 hover:to-emerald-500 transition-all shadow-lg shadow-green-500/25">
-            <i data-lucide="save" class="w-5 h-5"></i>
-            保存
-          </button>
-        </div>
-      </div>
-
-      <div class="p-6 space-y-6">
-        <div>
-          <div class="flex justify-between items-center mb-3">
-            <label class="text-sm font-medium text-slate-300">密码长度</label>
-            <span id="lengthValue" class="text-2xl font-bold text-blue-400 font-mono">16</span>
-          </div>
-          <input id="lengthSlider" type="range" min="4" max="64" value="16" class="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-blue-500" />
-        </div>
-
-        <div>
-          <label class="text-sm font-medium text-slate-300 mb-4 block">字符类型</label>
-          <div class="grid grid-cols-2 gap-3">
-            <label class="flex items-center gap-3 p-3 bg-slate-700/50 rounded-xl cursor-pointer hover:bg-slate-700 transition-colors">
-              <input id="includeLower" type="checkbox" checked class="w-5 h-5 rounded accent-blue-500" />
-              <span class="text-slate-200">小写字母 (a-z)</span>
-            </label>
-            <label class="flex items-center gap-3 p-3 bg-slate-700/50 rounded-xl cursor-pointer hover:bg-slate-700 transition-colors">
-              <input id="includeUpper" type="checkbox" checked class="w-5 h-5 rounded accent-blue-500" />
-              <span class="text-slate-200">大写字母 (A-Z)</span>
-            </label>
-            <label class="flex items-center gap-3 p-3 bg-slate-700/50 rounded-xl cursor-pointer hover:bg-slate-700 transition-colors">
-              <input id="includeNumbers" type="checkbox" checked class="w-5 h-5 rounded accent-blue-500" />
-              <span class="text-slate-200">数字 (0-9)</span>
-            </label>
-            <label class="flex items-center gap-3 p-3 bg-slate-700/50 rounded-xl cursor-pointer hover:bg-slate-700 transition-colors">
-              <input id="includeSymbols" type="checkbox" checked class="w-5 h-5 rounded accent-blue-500" />
-              <span class="text-slate-200">特殊符号</span>
-            </label>
-          </div>
-        </div>
-
-        <div>
-          <label class="text-sm font-medium text-slate-300 mb-3 block">排除字符</label>
-          <input id="excludeInput" type="text" placeholder="输入要排除的字符，例如: 0O1l" class="w-full bg-slate-700 border border-slate-600 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
-        </div>
-      </div>
-    </div>
-
-    <div id="historySection" class="mt-8 bg-slate-800 rounded-2xl shadow-2xl overflow-hidden border border-slate-700 hidden">
-      <div class="p-4 border-b border-slate-700 flex items-center justify-between">
-        <div class="flex items-center gap-2">
-          <i data-lucide="globe" class="w-5 h-5 text-slate-400"></i>
-          <h2 class="text-lg font-semibold text-white">密码记录</h2>
-          <span id="historyCount" class="text-sm text-slate-500">(0)</span>
-        </div>
-        <button id="clearHistoryBtn" class="flex items-center gap-2 px-3 py-1.5 text-sm text-red-400 hover:text-red-300 hover:bg-red-500/10 rounded-lg transition-colors">
-          <i data-lucide="trash-2" class="w-4 h-4"></i>
-          清空
-        </button>
-      </div>
-      <div id="historyList" class="max-h-[500px] overflow-y-auto"></div>
-    </div>
-
-    <div id="emptyState" class="mt-8 text-center py-12 hidden">
-      <i data-lucide="globe" class="w-16 h-16 text-slate-600 mx-auto mb-4"></i>
-      <p class="text-slate-500 text-lg">还没有保存任何密码</p>
-      <p class="text-slate-600 text-sm mt-2">生成密码并添加网站名称即可保存</p>
-    </div>
-  </div>
-
-  <script>
-    const LOWERCASE = 'abcdefghijklmnopqrstuvwxyz';
-    const UPPERCASE = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    const NUMBERS = '0123456789';
-    const SYMBOLS = '!@#$%^&*()_+-=[]{}|;:,.<>?';
-
-    let state = {
-      length: 16,
-      includeLower: true,
-      includeUpper: true,
-      includeNumbers: true,
-      includeSymbols: true,
-      excludeChars: '',
-      password: '',
-      website: '',
-      copied: false,
-      history: [],
-      editingId: null,
-      editWebsite: ''
-    };
-
-    const generateId = () => {
-      if (typeof crypto !== 'undefined' && crypto.randomUUID) {
-        return crypto.randomUUID();
-      }
-      return `${Date.now()}-${Math.random().toString(36).substr(2, 9)}-${Math.random().toString(36).substr(2, 9)}`;
-    };
-
-    const migrateHistory = (history) => {
-      const seen = new Set();
-      const result = [];
-      history.forEach((record) => {
-        if (seen.has(record.id)) {
-          result.push({ ...record, id: generateId() });
-        } else {
-          seen.add(record.id);
-          result.push(record);
-        }
-      });
-      return result;
-    };
-
-    const loadHistory = () => {
-      const savedHistory = localStorage.getItem('password-history');
-      const VERSION = 'v1';
-      const dataVersion = localStorage.getItem('password-data-version');
-      
-      let initialHistory = savedHistory ? JSON.parse(savedHistory) : [];
-      
-      if (dataVersion !== VERSION) {
-        initialHistory = migrateHistory(initialHistory);
-        localStorage.setItem('password-history', JSON.stringify(initialHistory));
-        localStorage.setItem('password-data-version', VERSION);
-      }
-      
-      return initialHistory;
-    };
-
-    const saveHistory = () => {
-      localStorage.setItem('password-history', JSON.stringify(state.history));
-    };
-
-    const calculateStrength = (pwd) => {
-      let score = 0;
-      if (pwd.length >= 8) score++;
-      if (pwd.length >= 12) score++;
-      if (pwd.length >= 16) score++;
-      if (/[a-z]/.test(pwd)) score++;
-      if (/[A-Z]/.test(pwd)) score++;
-      if (/[0-9]/.test(pwd)) score++;
-      if (/[^a-zA-Z0-9]/.test(pwd)) score++;
-      
-      if (score <= 2) return { label: '弱', color: 'bg-red-500' };
-      if (score <= 4) return { label: '中等', color: 'bg-yellow-500' };
-      if (score <= 6) return { label: '强', color: 'bg-blue-500' };
-      return { label: '非常强', color: 'bg-green-500' };
-    };
-
-    const generatePassword = () => {
-      let charset = '';
-      if (state.includeLower) charset += LOWERCASE;
-      if (state.includeUpper) charset += UPPERCASE;
-      if (state.includeNumbers) charset += NUMBERS;
-      if (state.includeSymbols) charset += SYMBOLS;
-
-      for (const char of state.excludeChars) {
-        charset = charset.split(char).join('');
-      }
-
-      if (!charset) {
-        state.password = '';
-        updateUI();
-        return;
-      }
-
-      let result = '';
-      const array = new Uint32Array(state.length);
-      crypto.getRandomValues(array);
-      
-      for (let i = 0; i < state.length; i++) {
-        result += charset[array[i] % charset.length];
-      }
-
-      state.password = result;
-      updateUI();
-      
-      if (result) {
-        const newRecord = {
-          id: generateId(),
-          password: result,
-          website: state.website,
-          createdAt: Date.now()
-        };
-        state.history = [newRecord, ...state.history];
-        saveHistory();
-        renderHistory();
-      }
-    };
-
-    const copyPassword = async (pwd) => {
-      try {
-        await navigator.clipboard.writeText(pwd);
-        state.copied = true;
-        updateUI();
-        setTimeout(() => {
-          state.copied = false;
-          updateUI();
-        }, 2000);
-      } catch (err) {
-        console.error('Failed to copy:', err);
-      }
-    };
-
-    const updateWebsite = (id, website) => {
-      state.history = state.history.map((record) =>
-        record.id === id ? { ...record, website } : record
-      );
-      saveHistory();
-      renderHistory();
-    };
-
-    const clearHistory = () => {
-      state.history = [];
-      localStorage.removeItem('password-history');
-      renderHistory();
-    };
-
-    const startEdit = (record) => {
-      state.editingId = record.id;
-      state.editWebsite = record.website;
-      renderHistory();
-    };
-
-    const saveEdit = () => {
-      if (state.editingId) {
-        updateWebsite(state.editingId, state.editWebsite);
-        state.editingId = null;
-        state.editWebsite = '';
-        renderHistory();
-      }
-    };
-
-    const cancelEdit = () => {
-      state.editingId = null;
-      state.editWebsite = '';
-      renderHistory();
-    };
-
-    const updateUI = () => {
-      const passwordDisplay = document.getElementById('passwordDisplay');
-      const lengthValue = document.getElementById('lengthValue');
-      const strengthBar = document.getElementById('strengthBar');
-      const strengthLabel = document.getElementById('strengthLabel');
-      const copyBtn = document.getElementById('copyBtn');
-
-      passwordDisplay.value = state.password;
-      lengthValue.textContent = state.length;
-
-      const strength = calculateStrength(state.password);
-      strengthBar.className = `w-full h-2 rounded-full transition-all ${strength.color}`;
-      strengthLabel.textContent = strength.label;
-
-      copyBtn.innerHTML = state.copied 
-        ? '<i data-lucide="check" class="w-6 h-6 text-green-500"></i>'
-        : '<i data-lucide="copy" class="w-6 h-6 text-slate-400 group-hover:text-white"></i>';
-      
-      lucide.createIcons();
-    };
-
-    const renderHistory = () => {
-      const historySection = document.getElementById('historySection');
-      const emptyState = document.getElementById('emptyState');
-      const historyCount = document.getElementById('historyCount');
-      const historyList = document.getElementById('historyList');
-
-      if (state.history.length === 0) {
-        historySection.classList.add('hidden');
-        emptyState.classList.remove('hidden');
-        return;
-      }
-
-      historySection.classList.remove('hidden');
-      emptyState.classList.add('hidden');
-      historyCount.textContent = `(${state.history.length})`;
-
-      historyList.innerHTML = state.history.map((record) => `
-        <div class="px-6 py-4 hover:bg-slate-700/50 transition-colors border-b border-slate-700/50 last:border-0">
-          ${state.editingId === record.id ? `
-            <div class="space-y-3">
-              <div class="flex items-center gap-2">
-                <i data-lucide="globe" class="w-4 h-4 text-blue-400"></i>
-                <input type="text" id="editWebsiteInput-${record.id}" value="${state.editWebsite.replace(/"/g, '&quot;')}" class="flex-1 bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="网站/服务名称" autofocus />
-              </div>
-              <div class="flex items-center gap-2">
-                <span class="text-sm text-slate-500">密码:</span>
-                <span class="font-mono text-slate-300">${record.password}</span>
-              </div>
-              <div class="flex gap-2">
-                <button onclick="handleSaveEdit('${record.id}')" class="px-3 py-1.5 bg-green-600 hover:bg-green-500 text-white text-sm rounded-lg transition-colors">保存</button>
-                <button onclick="handleCancelEdit()" class="px-3 py-1.5 bg-slate-600 hover:bg-slate-500 text-white text-sm rounded-lg transition-colors">取消</button>
-              </div>
+        <div class="content">
+            <div class="success-banner">
+                <h2>✅ 项目构建成功！</h2>
+                <p>可直接下载使用的完整微信小程序项目</p>
             </div>
-          ` : `
-            <div class="space-y-2">
-              <div class="flex items-start justify-between gap-4">
-                <div class="flex-1 min-w-0">
-                  <div class="flex items-center gap-2 mb-2">
-                    <i data-lucide="globe" class="w-4 h-4 text-blue-400 flex-shrink-0"></i>
-                    <span class="font-semibold text-white truncate">${record.website || '未命名'}</span>
-                  </div>
-                  <div class="flex items-center gap-2">
-                    <span class="font-mono text-slate-300 break-all">${record.password}</span>
-                  </div>
-                </div>
-                <div class="flex items-center gap-2 flex-shrink-0">
-                  <button onclick="handleStartEdit('${record.id}')" class="p-2 hover:bg-slate-600 rounded-lg transition-colors" title="编辑网站名称">
-                    <i data-lucide="edit-2" class="w-4 h-4 text-slate-400 hover:text-white"></i>
-                  </button>
-                  <button onclick="handleCopyPassword('${record.id}')" class="p-2 hover:bg-slate-600 rounded-lg transition-colors" title="复制密码">
-                    <i data-lucide="copy" class="w-4 h-4 text-slate-400 hover:text-white"></i>
-                  </button>
-                </div>
-              </div>
-              <div class="text-xs text-slate-500">创建于 ${new Date(record.createdAt).toLocaleString('zh-CN')}</div>
+
+            <div class="download-card">
+                <h2>📦 下载完整项目</h2>
+                <a href="/build/古物理趣-完整项目.zip" class="download-btn" download>
+                    📥 下载 ZIP
+                </a>
+                <p class="file-info">文件名：古物理趣-完整项目.zip | 包含所有源代码和配置</p>
             </div>
-          `}
+
+            <div class="section">
+                <h2>功能特点</h2>
+                <div class="features">
+                    <div class="feature">
+                        <div class="feature-icon">📱</div>
+                        <div class="feature-text">完整小程序</div>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">📦</div>
+                        <div class="feature-text">零依赖开箱</div>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">🎨</div>
+                        <div class="feature-text">古风设计</div>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">🔧</div>
+                        <div class="feature-text">易于扩展</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>使用说明</h2>
+                <ul class="steps">
+                    <li>
+                        <span class="step-number">1</span>
+                        <div>
+                            <strong>下载项目</strong><br>
+                            点击上方按钮下载ZIP压缩包
+                        </div>
+                    </li>
+                    <li>
+                        <span class="step-number">2</span>
+                        <div>
+                            <strong>解压文件</strong><br>
+                            将下载的ZIP文件解压到本地目录
+                        </div>
+                    </li>
+                    <li>
+                        <span class="step-number">3</span>
+                        <div>
+                            <strong>导入微信开发者工具</strong><br>
+                            打开微信开发者工具 → 选择"导入项目" → 选择解压后的目录
+                        </div>
+                    </li>
+                    <li>
+                        <span class="step-number">4</span>
+                        <div>
+                            <strong>配置AppID</strong><br>
+                            使用测试号或填写您的正式AppID
+                        </div>
+                    </li>
+                    <li>
+                        <span class="step-number">5</span>
+                        <div>
+                            <strong>编译运行</strong><br>
+                            点击"编译"按钮即可预览！
+                        </div>
+                    </li>
+                </ul>
+
+                <div class="note">
+                    <h3>📁 项目结构</h3>
+                    <p>
+                        <strong>miniprogram/</strong> - 小程序主目录<br>
+                        &nbsp;&nbsp;&nbsp;├── app.js/json/wxss - 应用核心文件<br>
+                        &nbsp;&nbsp;&nbsp;├── pages/ - 9个功能页面<br>
+                        &nbsp;&nbsp;&nbsp;├── utils/ - 工具函数<br>
+                        &nbsp;&nbsp;&nbsp;├── images/ - 图片资源<br>
+                        &nbsp;&nbsp;&nbsp;└── sitemap.json - 搜索配置
+                    </p>
+                </div>
+            </div>
         </div>
-      `).join('');
-      
-      lucide.createIcons();
-
-      state.history.forEach((record) => {
-        if (state.editingId === record.id) {
-          const input = document.getElementById(`editWebsiteInput-${record.id}`);
-          if (input) {
-            input.addEventListener('input', (e) => {
-              state.editWebsite = e.target.value;
-            });
-          }
-        }
-      });
-    };
-
-    window.handleStartEdit = (id) => {
-      const record = state.history.find(r => r.id === id);
-      if (record) startEdit(record);
-    };
-
-    window.handleSaveEdit = (id) => {
-      const record = state.history.find(r => r.id === id);
-      if (record) {
-        state.editWebsite = document.getElementById(`editWebsiteInput-${id}`).value;
-        saveEdit();
-      }
-    };
-
-    window.handleCancelEdit = cancelEdit;
-
-    window.handleCopyPassword = (id) => {
-      const record = state.history.find(r => r.id === id);
-      if (record) copyPassword(record.password);
-    };
-
-    const initEventListeners = () => {
-      document.getElementById('lengthSlider').addEventListener('input', (e) => {
-        state.length = Number(e.target.value);
-        updateUI();
-      });
-
-      document.getElementById('includeLower').addEventListener('change', (e) => {
-        state.includeLower = e.target.checked;
-      });
-
-      document.getElementById('includeUpper').addEventListener('change', (e) => {
-        state.includeUpper = e.target.checked;
-      });
-
-      document.getElementById('includeNumbers').addEventListener('change', (e) => {
-        state.includeNumbers = e.target.checked;
-      });
-
-      document.getElementById('includeSymbols').addEventListener('change', (e) => {
-        state.includeSymbols = e.target.checked;
-      });
-
-      document.getElementById('excludeInput').addEventListener('input', (e) => {
-        state.excludeChars = e.target.value;
-      });
-
-      document.getElementById('websiteInput').addEventListener('input', (e) => {
-        state.website = e.target.value;
-      });
-
-      document.getElementById('generateBtn').addEventListener('click', generatePassword);
-      
-      document.getElementById('saveBtn').addEventListener('click', generatePassword);
-
-      document.getElementById('copyBtn').addEventListener('click', () => {
-        copyPassword(state.password);
-      });
-
-      document.getElementById('clearHistoryBtn').addEventListener('click', () => {
-        if (confirm('确定要清空所有密码记录吗？')) {
-          clearHistory();
-        }
-      });
-    };
-
-    const init = () => {
-      state.history = loadHistory();
-      initEventListeners();
-      generatePassword();
-      renderHistory();
-    };
-
-    document.addEventListener('DOMContentLoaded', () => {
-      lucide.createIcons();
-      init();
-    });
-  </script>
+        
+        <div class="footer">
+            <p>© 2024 古物理趣 - 让科学更有趣 | Version 1.0.0</p>
+        </div>
+    </div>
 </body>
 </html>

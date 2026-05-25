@@ -1,0 +1,130 @@
+<view class="container">
+  <view class="header-section">
+    <view class="header-icon">
+      <text class="icon-bluetooth">📡</text>
+    </view>
+    <text class="header-title">蓝牙连接</text>
+    <text class="header-subtitle">连接密室Arduino机关设备</text>
+  </view>
+
+  <view class="connection-status-card">
+    <view class="status-visual">
+      <view class="status-circle {{connectionStatus}}">
+        <text class="status-icon">{{connectionStatus === 'connected' ? '✓' : connectionStatus === 'connecting' ? '⟳' : '✗'}}</text>
+      </view>
+      <view class="signal-waves" wx:if="{{connectionStatus === 'connected'}}">
+        <view class="wave wave1"></view>
+        <view class="wave wave2"></view>
+        <view class="wave wave3"></view>
+      </view>
+    </view>
+    <view class="status-info">
+      <text class="status-label">{{statusLabel}}</text>
+      <text class="status-detail" wx:if="{{connectedDeviceName}}">设备：{{connectedDeviceName}}</text>
+      <text class="status-detail" wx:if="{{connectionTime}}">连接时间：{{connectionTime}}</text>
+    </view>
+  </view>
+
+  <view class="action-section">
+    <button class="btn-primary {{connectionStatus === 'connecting' ? 'disabled' : ''}}" 
+            bindtap="{{connectionStatus === 'connected' ? 'disconnect' : 'startConnection'}}"
+            disabled="{{connectionStatus === 'connecting'}}">
+      {{connectionStatus === 'connected' ? '断开连接' : connectionStatus === 'connecting' ? '连接中...' : '搜索并连接'}}
+    </button>
+    
+    <button class="btn-secondary" bindtap="refreshDevices" wx:if="{{!isConnected && devices.length > 0}}">
+      刷新设备列表
+    </button>
+  </view>
+
+  <view class="devices-section" wx:if="{{!isConnected}}">
+    <view class="section-header">
+      <text class="section-title">可用设备</text>
+      <text class="device-count">共 {{devices.length}} 个</text>
+    </view>
+
+    <view class="device-list">
+      <view class="device-item {{device.connecting ? 'connecting' : ''}}"
+            wx:for="{{devices}}"
+            wx:key="deviceId"
+            bindtap="selectDevice"
+            data-device="{{item}}">
+        <view class="device-icon">
+          <text>🎮</text>
+        </view>
+        <view class="device-info">
+          <text class="device-name">{{item.name || '未知设备'}}</text>
+          <text class="device-id">ID: {{item.deviceId}}</text>
+          <text class="device-rssi">信号强度: {{item.RSSI}} dBm</text>
+        </view>
+        <view class="device-status">
+          <text class="status-badge {{item.connecting ? 'connecting' : ''}}">
+            {{item.connecting ? '连接中' : item.connected ? '已连接' : '点击连接'}}
+          </text>
+        </view>
+      </view>
+    </view>
+
+    <view class="empty-state" wx:if="{{devices.length === 0 && !isSearching}}">
+      <text class="empty-icon">📡</text>
+      <text class="empty-text">暂未发现可用设备</text>
+      <text class="empty-hint">请确保设备已开启且在范围内</text>
+    </view>
+
+    <view class="searching-state" wx:if="{{isSearching}}">
+      <view class="search-animation">
+        <view class="search-ring ring1"></view>
+        <view class="search-ring ring2"></view>
+        <view class="search-ring ring3"></view>
+      </view>
+      <text class="search-text">正在搜索设备...</text>
+    </view>
+  </view>
+
+  <view class="info-section">
+    <view class="info-card">
+      <view class="info-header">
+        <text class="info-icon">💡</text>
+        <text class="info-title">连接说明</text>
+      </view>
+      <view class="info-list">
+        <view class="info-item">
+          <text class="info-number">1</text>
+          <text class="info-text">确保手机蓝牙已开启</text>
+        </view>
+        <view class="info-item">
+          <text class="info-number">2</text>
+          <text class="info-text">密室设备需处于可发现状态</text>
+        </view>
+        <view class="info-item">
+          <text class="info-number">3</text>
+          <text class="info-text">连接成功后可自动重连</text>
+        </view>
+        <view class="info-item">
+          <text class="info-number">4</text>
+          <text class="info-text">支持BLE5.0协议设备</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="history-section" wx:if="{{boundDevices.length > 0}}">
+    <view class="section-header">
+      <text class="section-title">已绑定设备</text>
+    </view>
+    <view class="bound-device-list">
+      <view class="bound-device-item"
+            wx:for="{{boundDevices}}"
+            wx:key="deviceId"
+            bindtap="reconnectDevice"
+            data-device="{{item}}">
+        <view class="device-icon-small">🎮</view>
+        <view class="device-info-small">
+          <text class="device-name-small">{{item.name || '未知设备'}}</text>
+          <text class="last-connect">上次连接：{{item.lastConnectTime}}</text>
+        </view>
+        <button class="btn-small">重连</button>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,17 @@
+{
+  "miniprogramRoot": "miniprogram/",
+  "projectname": "古物理趣",
+  "description": "古代物理密室科普助手微信小程序",
+  "appid": "touristappid",
+  "setting": {
+    "urlCheck": false,
+    "es6": true,
+    "enhance": true,
+    "postcss": true,
+    "minified": true,
+    "newFeature": true
+  },
+  "compileType": "miniprogram",
+  "libVersion": "2.25.0",
+  "condition": {}
+}
